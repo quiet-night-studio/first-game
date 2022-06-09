@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Player.gd" type="Script" id=1]
+[ext_resource path="res://Main.gd" type="Script" id=1]
+[ext_resource path="res://Mob.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=3]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -9,6 +11,7 @@ _data = {
 
 [node name="Main" type="Node"]
 script = ExtResource( 1 )
+mob_scene = ExtResource( 2 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
@@ -23,5 +26,8 @@ curve = SubResource( 1 )
 [node name="MobTimer" type="Timer" parent="."]
 wait_time = 0.5
 autostart = true
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
+position = Vector2( 233, 298 )
 
 [connection signal="timeout" from="MobTimer" to="." method="_on_MobTimer_timeout"]
