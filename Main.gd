@@ -8,19 +8,36 @@ func _ready():
 
 func new_game():
 	score = 0
+	$HUD.update_score(score)
+	
+	get_tree().call_group("mobs", "queue_free")
+	$Player.start($StartPosition.position)
+
+	$StartTimer.start()
+	$Music.play()
+
+	$HUD.show_message("Get ready...")
+
+	yield($StartTimer, "timeout")
+	
 	$ScoreTimer.start()
+	$MobTimer.start()
 
 func game_over():
 	$ScoreTimer.stop()
-	
-	
+	$MobTimer.stop()
+	get_tree().call_group("mobs", "queue_free")
+	$HUD.show_game_over()
+	$Music.stop()
+	$DeathSound.play()
+
 func _on_MobTimer_timeout():
-	var mob_spawn_location = get_node("MobPath/MobSpwanLocation")
+	var mob_spawn_location = $MobPath/MobSpawnLocation
 	mob_spawn_location.unit_offset = randf()
 	
 	var mob = mob_scene.instance()
 	add_child(mob)
-	
+
 	mob.position = mob_spawn_location.position
 	
 	var direction = mob_spawn_location.rotation + PI / 2

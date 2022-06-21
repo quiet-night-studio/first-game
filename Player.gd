@@ -7,6 +7,7 @@ signal hit
 
 func _ready():
 	screen_size = get_viewport_rect().size
+	hide()
 
 func _process(delta):
 	var direction = Vector2.ZERO
