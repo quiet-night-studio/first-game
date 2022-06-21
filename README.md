@@ -5,4 +5,5 @@ This repository holds the resulting contents from a few hours worth of practice 
 This gameplay is simple, your goal is to dodge the enemies (the creeps) for as long as you can, allowing the scoreboard timer to count up until you die.
 
 Tutorial Video: https://youtu.be/WEt2JHEe-do
+
 Documentation: https://docs.godotengine.org/en/stable/getting_started/first_2d_game/index.html
